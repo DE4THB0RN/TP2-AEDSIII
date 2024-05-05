@@ -32,7 +32,8 @@ public class ArquivoLivro extends Arquivo<Livro> {
 
         //Uso da lista invertida
         try {
-            //Implementar update
+            listaInvertida.delete(novoLivro.getID);
+            listaInvertida.create(novo.getTitulo(), novo.getID());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -55,21 +56,18 @@ public class ArquivoLivro extends Arquivo<Livro> {
 
     public String pesquisa(String alvo){
         String[] lista_alvo = alvo.split(" ");
-        String[] resp = listaInvertida.read(lista_alvo[0]);
+        String resp = listaInvertida.read(lista_alvo[0]);
 
         for (String palavra : lista_alvo){
-            String[] temp = {};
+            String temp = "";
             for (String id : listaInvertida.read(palavra)) {
-                for (String pos : resp) {
-                    if (pos == id) {
-                        temp.add(pos);
-                    }
+                if (resp.contains(id)) {
+                    temp.add(id + "");
                 }
             }
             res = temp;
         }
-
-        return resp[0];
+        return resp;
     }
 
 }
