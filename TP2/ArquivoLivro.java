@@ -10,18 +10,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import aed3.ListaInvertida;
+
 public class ArquivoLivro {
 
   protected RandomAccessFile arquivo;
   protected String nomeArquivo = "";
   final protected int TAM_CABECALHO = 4;
-
+  private ListaInvertida listaInvertida;
   public ArquivoLivro(String na) throws Exception {
     this.nomeArquivo = na;
     arquivo = new RandomAccessFile(na, "rw");
     if (arquivo.length() < TAM_CABECALHO) {
       arquivo.seek(0);
       arquivo.writeInt(0);
+    }
+    try {
+      listaInvertida = new ListaInvertida(2, "SakasamanoList", "Blocos");
+    } catch (Exception e) {
+      System.out.println(e);
     }
   }
 
@@ -75,6 +82,7 @@ public class ArquivoLivro {
       arquivo.writeShort(tam);
       arquivo.write(ba);
     }
+    listaInvertida.create(liv.getTitulo(),liv.getID() );
     return liv.getID();
 
   }
