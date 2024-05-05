@@ -15,7 +15,7 @@ public class Main {
     ListaInvertida inverted_list;
     Scanner console = new Scanner(System.in);
     String[] book_title = console.nextLine().split(" "); //take the full title of the book and make a list of the words
-    int book_ID = console.nextLine();
+    int book_ID = Integer.parseInt(console.nextLine());
 
     for (String word : book_title) {                       //for each word of the title, checks if it's a stopword
       if (stopwords.contains(word)) {
@@ -24,9 +24,9 @@ public class Main {
       } else {
         System.out.println("Stopword " + word + " is not present in the list."); //it's not a stopword
         if (WORD_FOUND) {
-            inverted_list[WORD_FOUND].add(book_ID)  //word already in the list, just add the book ID to it
+            inverted_list[WORD_FOUND].add(book_ID);  //word already in the list, just add the book ID to it
         } else {
-            inverted_list.create(word, book_ID)     //word not in it, create a new element
+            inverted_list.create(word, book_ID);    //word not in it, create a new element
         }
         //inverted_list.create(CHAVE, DADO) // how do I define chave and dado ?
       }
