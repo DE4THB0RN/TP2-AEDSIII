@@ -13,7 +13,7 @@ public class Principal {
         Livro l4 = new Livro(-1, "9788582714911", "Memória", 55.58F);
         Livro l5 = new Livro(-1, "9786587150062", "Com Amor", 48.9F);
         Livro l6 = new Livro(-1, "9786587150063", "Bleach", 31.0F);
-        Livro l7 = new Livro(-1, "9786587150063", "Thousand Year Blood War", 31.0F);
+        Livro l7 = new Livro(-1, "9786587150063", "Bleach Thousand Year Blood War", 31.0F);
         Livro livre;
         int id1, id2, id3, id4, id5, id6,id7;
 
