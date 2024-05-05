@@ -41,18 +41,35 @@ public class ArquivoLivro extends Arquivo<Livro> {
     }
 
     public boolean delete(int id){
-        //Uso da lista invertida
-        //A ser implementado
         //Código original
         boolean resp = this.delete(id);
         return resp;
+
+        //Uso da lista invertida
+        try {
+            listaInvertida.delete(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public String pesquisa(String alvo){
-        String resp = "";
+        String[] lista_alvo = alvo.split(" ");
+        String[] resp = listaInvertida.read(lista_alvo[0]);
 
+        for (String palavra : lista_alvo){
+            String[] temp = {};
+            for (String id : listaInvertida.read(palavra)) {
+                for (String pos : resp) {
+                    if (pos == id) {
+                        temp.add(pos);
+                    }
+                }
+            }
+            res = temp;
+        }
 
-        return resp;
+        return resp[0];
     }
 
 }
