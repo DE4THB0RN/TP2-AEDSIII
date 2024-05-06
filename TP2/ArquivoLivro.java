@@ -21,7 +21,7 @@ public class ArquivoLivro extends Arquivo<Livro> {
             String[] partes = normalizada.split(" ");
             stopwords = new ArrayList<>();
 
-            for(String s: partes){
+            for (String s : partes) {
                 stopwords.add(s);
             }
 
@@ -41,12 +41,12 @@ public class ArquivoLivro extends Arquivo<Livro> {
             Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
             normalizada = padrao.matcher(normalizada).replaceAll("");
             String[] partes = normalizada.split(" ");
-            
-            for(String s : partes){
-                if(!stopwords.contains(s))
-                listaInvertida.create(s, novo.getID());
+
+            for (String s : partes) {
+                if (!stopwords.contains(s))
+                    listaInvertida.create(s, novo.getID());
             }
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -68,8 +68,8 @@ public class ArquivoLivro extends Arquivo<Livro> {
             Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
             normalizada = padrao.matcher(normalizada).replaceAll("");
             String[] partes = normalizada.split(" ");
-            for(String s : partes){
-               listaInvertida.delete(s, tmp.getID()); 
+            for (String s : partes) {
+                listaInvertida.delete(s, tmp.getID());
             }
 
             normalizada = Normalizer.normalize(novoLivro.getTitulo(), Normalizer.Form.NFD);
@@ -77,8 +77,8 @@ public class ArquivoLivro extends Arquivo<Livro> {
             normalizada = padrao.matcher(normalizada).replaceAll("");
             partes = normalizada.split(" ");
 
-            for(String s : partes){
-                if(!stopwords.contains(s)){
+            for (String s : partes) {
+                if (!stopwords.contains(s)) {
                     listaInvertida.create(s, novoLivro.getID());
                 }
             }
@@ -101,10 +101,10 @@ public class ArquivoLivro extends Arquivo<Livro> {
             Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
             normalizada = padrao.matcher(normalizada).replaceAll("");
             String[] partes = normalizada.split(" ");
-            for(String s : partes){
-               listaInvertida.delete(s, tmp.getID()); 
+            for (String s : partes) {
+                listaInvertida.delete(s, tmp.getID());
             }
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -112,28 +112,35 @@ public class ArquivoLivro extends Arquivo<Livro> {
     }
 
     public Livro[] pesquisa(String alvo) {
-        String[] partido = alvo.split(" ");
+
+        String normalizada = Normalizer.normalize(alvo, Normalizer.Form.NFD);
+        Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        normalizada = padrao.matcher(normalizada).replaceAll("");
+        String[] partes = normalizada.split(" ");
+
         int[] tmparray;
-        int[] inserir = new int[55];
+
         Livro[] resp = null;
         Livro tmp;
 
         List<Livro> listinha = new ArrayList<>();
         try {
+            int[] inserir = listaInvertida.read(partes[0]);
             // For para buscar todas as palavras da string de busca
-            for (String buscar : partido) {
+            for (int i = 1; i < partes.length; i++) {
+                if (!stopwords.contains(partes[i])) {
+                    tmparray = listaInvertida.read(partes[i]);
+                    inserir = intersection(tmparray, inserir);
+                }
 
-                tmparray = listaInvertida.read(buscar);
-                
-                
             }
             // Se o item ainda não está presente na Lista,então ele é adicionado
             for (int item : inserir) {
 
-                    tmp = this.read(item);
-                    if (!listinha.contains(tmp)) {
-                        listinha.add(tmp);
-                    }
+                tmp = this.read(item);
+                if (!listinha.contains(tmp)) {
+                    listinha.add(tmp);
+                }
 
             }
             resp = new Livro[listinha.size()];
@@ -148,11 +155,11 @@ public class ArquivoLivro extends Arquivo<Livro> {
         return resp;
     }
 
-    private int[] intersection(int[] a, int[] b){
+    private int[] intersection(int[] a, int[] b) {
         List<Integer> listinha = new ArrayList<>();
-        for(int i = 0; i < a.length; i++){
-            for(int j = 0; j < b.length; j++){
-                if(a[i] == b[j] && !listinha.contains(a[i])){
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < b.length; j++) {
+                if (a[i] == b[j] && !listinha.contains(a[i])) {
                     listinha.add(a[i]);
                 }
             }
@@ -160,7 +167,7 @@ public class ArquivoLivro extends Arquivo<Livro> {
 
         int[] resp = new int[listinha.size()];
 
-        for(int i = 0; i < listinha.size(); i++){
+        for (int i = 0; i < listinha.size(); i++) {
             resp[i] = listinha.get(i);
         }
 
