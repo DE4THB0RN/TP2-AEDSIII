@@ -1,14 +1,14 @@
 # TP2-AEDSIII
 
-Primeiro especificamos a classe de Arquivo de uma genérica para um ArquivoLivro para tornar mais fácil a lista invertida
-Depois testamos a lista invertida que deviamos importar
+<p>Primeiro especificamos a classe de Arquivo de uma genérica para um ArquivoLivro para tornar mais fácil a lista invertida
+Depois testamos a lista invertida que deviamos importar</p>
 
-Após algumas complicações, foi possível entender a estrutura da ListaInvertida corretamente e modificar os métodos de create, delete e update
-A pesquisa ainda estava causando erros depois disso
-Porém foi possível consertar com um pouco de pesquisa e depois faze-la funcionar com mais de uma palavra
-O código passou a funcionar corretamente depois disso
+<p>Após algumas complicações, foi possível entender a estrutura da ListaInvertida corretamente e modificar os métodos de create, delete e update
+A pesquisa ainda estava causando erros depois disso</p>
+<p>Porém foi possível consertar com um pouco de pesquisa e depois faze-la funcionar com mais de uma palavra
+O código passou a funcionar corretamente depois disso</p>
 
-Trabalho feito por Pedro Augusto de Paula, Léa Tronel e Loïcia Ribeiro
+<p>Trabalho feito por Pedro Augusto de Paula, Léa Tronel e Loïcia Ribeiro</p>
 
 
 
@@ -37,9 +37,9 @@ Trabalho feito por Pedro Augusto de Paula, Léa Tronel e Loïcia Ribeiro
  ### O trabalho está funcionando corretamente?
  Sim
 
- O trabalho está completo?
+ ### O trabalho está completo?
  Sim
 
- O trabalho é original e não a cópia de um trabalho de um colega?
+ ### O trabalho é original e não a cópia de um trabalho de um colega?
  Sim
 
