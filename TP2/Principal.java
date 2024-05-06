@@ -10,10 +10,10 @@ public class Principal {
         ArquivoLivro arqTeste;
         Livro l1 = new Livro(-1, "9788563560278", "Bleach CFYW", 15.99F);
         Livro l2 = new Livro(-1, "9788584290482", "Ensino Híbrido", 39.90F);
-        Livro l3 = new Livro(-1, "9786559790005", "Ensino moderno", 48.1F);
+        Livro l3 = new Livro(-1, "9786559790005", "Bleach vol 14", 48.1F);
         Livro l4 = new Livro(-1, "9788582714911", "Memoria", 55.58F);
         Livro l5 = new Livro(-1, "9786587150062", "Memoria moderno", 48.9F);
-        Livro l6 = new Livro(-1, "9786587150063", "Bleach", 65.0F);
+        Livro l6 = new Livro(-1, "9786587150063", "Bleach vol1", 65.0F);
         Livro l7 = new Livro(-1, "9786587150063", "Bleach Thousand Year Blood War", 65.0F);
         Livro livre;
         Livro[] resposta;
