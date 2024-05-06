@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import aed3.ListaInvertida;
 
 public class ArquivoLivro extends Arquivo<Livro> {
@@ -13,12 +16,13 @@ public class ArquivoLivro extends Arquivo<Livro> {
         }
     }
 
-    public int create(Livro novo) {
-        //Código original
-        int resp = this.create(novo);
-
-        //Uso da lista invertida
+    public int createLivro(Livro novo) {
+        int resp = -1;
         try {
+            // Código original
+            resp = this.create(novo);
+
+            // Uso da lista invertida
             listaInvertida.create(novo.getTitulo(), novo.getID());
         } catch (Exception e) {
             System.out.println(e);
@@ -26,14 +30,19 @@ public class ArquivoLivro extends Arquivo<Livro> {
         return resp;
     }
 
-    public boolean update(Livro novoLivro){
-        //Código original
-        boolean resp = this.update(novoLivro);
+    public boolean updateLivro(Livro novoLivro) {
 
-        //Uso da lista invertida
+        boolean resp = false;
+
         try {
-            listaInvertida.delete(novoLivro.getID);
-            listaInvertida.create(novo.getTitulo(), novo.getID());
+
+            // Código original
+            Livro tmp = this.read(novoLivro.getID());
+            resp = this.update(novoLivro);
+
+            // Uso da lista invertida
+            listaInvertida.delete(tmp.getTitulo(), tmp.getID());
+            listaInvertida.create(novoLivro.getTitulo(), novoLivro.getID());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -41,31 +50,46 @@ public class ArquivoLivro extends Arquivo<Livro> {
         return resp;
     }
 
-    public boolean delete(int id){
-        //Código original
-        boolean resp = this.delete(id);
-        return resp;
-
-        //Uso da lista invertida
+    public boolean deleteLivro(int id) {
+        boolean resp = false;
         try {
-            listaInvertida.delete(id);
+            // Código original
+            Livro tmp = this.read(id);
+            resp = this.delete(id);
+
+            // Uso da lista invertida
+            listaInvertida.delete(tmp.getTitulo(), tmp.getID());
         } catch (Exception e) {
             System.out.println(e);
         }
+        return resp;
     }
 
-    public String pesquisa(String alvo){
-        String[] lista_alvo = alvo.split(" ");
-        String resp = listaInvertida.read(lista_alvo[0]);
+    public Livro[] pesquisa(String alvo) {
+        String[] partido = alvo.split(" ");
+        int[] tmparray;
+        Livro[] resp = null;
+        Livro tmp;
 
-        for (String palavra : lista_alvo){
-            String temp = "";
-            for (String id : listaInvertida.read(palavra)) {
-                if (resp.contains(id)) {
-                    temp.add(id + "");
+        List<Livro> listinha = new ArrayList<>();
+        try {
+            //For para buscar todas as palavras da string de busca
+            for (String buscar : partido) {
+                tmparray = listaInvertida.read(buscar);
+                //Se o item ainda não está presente na Lista,então ele é adicionado
+                for(int item: tmparray){
+
+                    tmp = this.read(item);
+                    if(!listinha.contains(tmp)){
+                        listinha.add(tmp);
+                    }
+
                 }
             }
-            res = temp;
+            //Então a lista é convertida para um Array e retornada
+            resp = (Livro[]) listinha.toArray();
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return resp;
     }

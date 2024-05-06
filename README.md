@@ -3,6 +3,9 @@
 Primeiro especificamos a classe de Arquivo de uma genérica para um ArquivoLivro para tornar mais fácil a lista invertida
 Depois testamos a lista invertida que deviamos importar
 
+Após algumas complicações, foi possível entender a estrutura da ListaInvertida corretamente e modificar os métodos de create, delete e update
+A pesquisa ainda estava causando erros depois disso
+
 
 
 
