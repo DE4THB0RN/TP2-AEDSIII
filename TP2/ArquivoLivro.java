@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import aed3.ListaInvertida;
 
+//Classe extendida do Arquivo genérico
 public class ArquivoLivro extends Arquivo<Livro> {
 
     private ListaInvertida listaInvertida;

@@ -1,6 +1,7 @@
 import java.io.File;
 
 //Código usado para teste
+//Deve ser ignorado ou iniciado a partir da pasta TP2
 public class Principal {
     public static void main(String[] args) {
 

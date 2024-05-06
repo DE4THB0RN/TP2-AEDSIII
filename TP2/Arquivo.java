@@ -9,7 +9,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+//Arquivo genérico
 public class Arquivo<T extends Registro> {
 
   protected RandomAccessFile arquivo;
